@@ -25,8 +25,6 @@ export const getById = async (req, res) => {
     }
 };
 
-// creating a new booking
-
 export const create = async (req, res) => {
     const { roomId, startTime, endTime, bookedBy } = req.body;
     try {
@@ -43,5 +41,3 @@ export const create = async (req, res) => {
         res.status(500).json({ error: "Error creating booking" });
     }
 };
-
-// fetching all bookings

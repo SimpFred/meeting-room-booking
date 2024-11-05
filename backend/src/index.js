@@ -8,7 +8,6 @@ app.use(express.json());
 app.use('/rooms', roomRoutes);
 app.use('/bookings', bookingRoutes);
 
-// Starta servern
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
