@@ -1,9 +1,12 @@
-import React from 'react';
-import Button from './button';
+import React, { useContext } from 'react';
+import Button from '../button';
+import BookingContext from '../../context/bookingContext';
 
-const RoomList = ({ rooms, checkedRooms, handleRoomSelection, handleConfirmSelection, handleClearSelection }) => {
+const RoomList = () => {
+    const { rooms, checkedRooms, handleRoomSelection, handleConfirmSelection, handleClearSelection} = useContext(BookingContext);
+
     return (
-        <div className="rounded-lg bg-white z-10 shadow-md p-[24px]">
+        <div className="absolute w-full rounded-lg bg-white z-10 shadow-md p-[24px]">
             {rooms.map((room) => (
                 <div key={room.id} className="flex items-center justify-between p-2 hover:bg-gray-100">
                     <label className="flex items-center w-full cursor-pointer">

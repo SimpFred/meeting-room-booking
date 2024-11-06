@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid';
+import BookingContext from '../../context/bookingContext';
 
-const DropdownButton = ({ isDropdownOpen, toggleDropdown, selectedRooms }) => {
+const DropdownButton = () => {
+  const { isDropdownOpen, toggleDropdown, selectedRooms  } = useContext(BookingContext);
+
   return (
     <button
       onClick={toggleDropdown}
