@@ -13,6 +13,7 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        customTeal: '#00695C',
       },
     },
   },
