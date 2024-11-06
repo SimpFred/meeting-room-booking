@@ -1,70 +1,36 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
-import { DropdownButton, RoomList } from '../components';
-
-async function fetchRooms() {
-  const res = await fetch('http://localhost:5000/rooms');
-  const data = await res.json();
-  return data;
-}
+import { BookingProvider } from '../context/bookingContext';
+import DropdownContainer from '../components/dropDownMenu/dropDownContainer';
+import BookingCalendar from '../components/bookingCalandar/bookingCalandar';
 
 export default function Booking() {
-  const [rooms, setRooms] = useState([]);
-  const [checkedRooms, setCheckedRooms] = useState([]);
-  const [selectedRooms, setSelectedRooms] = useState([]);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    async function getRooms() {
-      const roomsData = await fetchRooms();
-      setRooms(roomsData);
-    }
-    getRooms();
-  }, []);
-
-  const handleRoomSelection = (roomName) => {
-    setCheckedRooms((prevSelected) =>
-      prevSelected.includes(roomName)
-        ? prevSelected.filter((name) => name !== roomName)
-        : [...prevSelected, roomName]
-    );
+  const bookings = {
+    '2023-10-18': [
+      { name: 'Steve', capacity: 6, start: '08:00', end: '09:00' },
+      { name: 'Ada', capacity: 10, start: '08:00', end: '09:00' },
+      { name: 'Margret', capacity: 4, start: '08:00', end: '09:00' },
+      { name: 'Steve', capacity: 6, start: '09:00', end: '10:00' },
+      // Lägg till fler tidsslotter här
+    ],
+    '2023-10-19': [
+      { name: 'Margret', capacity: 4, start: '08:00', end: '09:00' },
+      // Lägg till fler tidsslotter här
+    ],
+    '2023-10-20': [
+      { name: 'Ada', capacity: 10, start: '08:00', end: '09:00' },
+      // Lägg till fler tidsslotter här
+    ]
   };
-
-  const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
-
-  const handleConfirmSelection = () => {
-    setIsDropdownOpen(false);
-    setSelectedRooms(checkedRooms);
-  };
-
-  const handleClearSelection = () => {
-    setSelectedRooms([]);
-    setCheckedRooms([]);
-  };
-
   return (
-    <div className="min-h-screen p-6 mb-[53px]">
-      <h1 className="font-normal mt-[80px] text-[40px] leading-[100%] text-black">Välj en tid</h1>
-      <div className="mt-[45px] relative">
-        <DropdownButton
-          isDropdownOpen={isDropdownOpen}
-          toggleDropdown={toggleDropdown}
-          selectedRooms={selectedRooms}
-        />
+    <BookingProvider>
+      <div className="min-h-screen p-6 mb-[53px]">
+        <h1 className="font-normal mt-[80px] text-[40px] leading-[100%] text-black">Välj en tid</h1>
 
-        {isDropdownOpen && (
-          <div ref={dropdownRef}>
-            <RoomList
-              rooms={rooms}
-              checkedRooms={checkedRooms}
-              handleRoomSelection={handleRoomSelection}
-              handleConfirmSelection={handleConfirmSelection}
-              handleClearSelection={handleClearSelection}
-            />
-          </div>
-        )}
+        <DropdownContainer />
+        <div className="mt-[40px]">
+          <BookingCalendar bookings={bookings} />
+        </div>
       </div>
-    </div>
+    </BookingProvider>
   );
 }
