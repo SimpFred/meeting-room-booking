@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from './components';
+import Button from './components/button';
 
 export default function Home() {
   const router = useRouter();
