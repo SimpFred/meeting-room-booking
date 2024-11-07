@@ -7,7 +7,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleBookClick = () => {
-    router.push('/booking');
+    router.push('/pages/booking');
   };
 
   return (
