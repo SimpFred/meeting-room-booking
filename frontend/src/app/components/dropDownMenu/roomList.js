@@ -13,8 +13,8 @@ const RoomList = () => {
                         <span className="flex-grow text-sm">{room.name} ({room.capacity} personer)</span>
                         <input
                             type="checkbox"
-                            checked={checkedRooms.includes(room.name)}
-                            onChange={() => handleRoomSelection(room.name)}
+                            checked={checkedRooms.includes(room.id)}
+                            onChange={() => handleRoomSelection(room.id)}
                             className="ml-2 bg-transparent checked:text-[#004D40] transform scale-150"
                         />
                     </label>
