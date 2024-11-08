@@ -26,7 +26,7 @@ const DateColumn = ({ date }) => {
                     {rooms
                         .filter(room => {
                             const isSelectedRoom = !userSelectedRooms.length || userSelectedRooms.includes(room.id);
-                            return isSelectedRoom && !isRoomBooked(rooms, room.id, date, hour);
+                            return isSelectedRoom && !isRoomBooked(room, date, hour);
                         }).map((room, roomIndex) => (
                             <RoomCard
                                 key={roomIndex}
