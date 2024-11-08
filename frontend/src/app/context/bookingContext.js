@@ -8,8 +8,9 @@ export const BookingProvider = ({ children }) => {
   const [rooms, setRooms] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [checkedRooms, setCheckedRooms] = useState([]);
-  const [selectedRooms, setSelectedRooms] = useState([]);
+  const [userSelectedRooms, setUserSelectedRooms] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [dates, setDates] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState({ roomId: null, hour: null, date: null });
   const dropdownRef = useRef(null);
 
@@ -39,11 +40,11 @@ export const BookingProvider = ({ children }) => {
 
   const handleConfirmSelection = () => {
     setIsDropdownOpen(false);
-    setSelectedRooms(checkedRooms);
+    setUserSelectedRooms(checkedRooms);
   };
 
   const handleClearSelection = () => {
-    setSelectedRooms([]);
+    setUserSelectedRooms([]);
     setCheckedRooms([]);
   };
 
@@ -53,10 +54,12 @@ export const BookingProvider = ({ children }) => {
         rooms,
         bookings,
         checkedRooms,
-        selectedRooms,
+        userSelectedRooms,
         isDropdownOpen,
         dropdownRef,
         selectedRoom,
+        dates,
+        setDates,
         setSelectedRoom,
         handleRoomSelection,
         toggleDropdown,

@@ -3,7 +3,7 @@ import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid';
 import BookingContext from '../../context/bookingContext';
 
 const DropdownButton = () => {
-  const { isDropdownOpen, toggleDropdown, selectedRooms  } = useContext(BookingContext);
+  const { isDropdownOpen, toggleDropdown, userSelectedRooms  } = useContext(BookingContext);
 
   return (
     <button
@@ -11,8 +11,8 @@ const DropdownButton = () => {
       className="min-w-[180px] rounded-[8px] border border-solid p-[16px] text-left bg-white flex justify-between items-center"
     >
       <span>
-        {selectedRooms.length > 0
-          ? `${selectedRooms.length} rum valda`
+        {userSelectedRooms.length > 0
+          ? `${userSelectedRooms.length} rum valda`
           : 'Välj mötesrum'}
       </span>
       {isDropdownOpen ? (
