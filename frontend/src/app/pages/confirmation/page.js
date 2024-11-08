@@ -11,21 +11,17 @@ export default function Confirmation() {
     const [name, setName] = useState("");
     const router = useRouter();
 
-    console.log(selectedRoom);
-
     const handleBooking = async () => {
-        console.log(selectedRoom);
         if (!name) {
             alert("Vänligen ange ditt namn.");
             return;
         }
 
-        // Skapa startTime och endTime från selectedRoom
         const startTime = new Date(`${selectedRoom.date}T${selectedRoom.hour}:00`);
+        startTime.setHours(startTime.getHours() + 1);
         const endTime = new Date(startTime);
         endTime.setHours(startTime.getHours() + 1);
 
-        // Skicka bokningen till databasen
         try {
             const booking = {
                 roomId: selectedRoom.roomId,
