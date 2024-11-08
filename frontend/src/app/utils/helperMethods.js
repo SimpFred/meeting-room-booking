@@ -31,7 +31,6 @@ export const isRoomBooked = (room, date, hour) => {
     return room.bookings.some(booking => {
         const bookingStart = new Date(booking.startTime);
         const bookingEnd = new Date(booking.endTime);
-        console.log(bookingStart.getTime());
         return (
             // Check if booking start and end times match.
             bookingStart.getTime() === startTime.getTime() &&
