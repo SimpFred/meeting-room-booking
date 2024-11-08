@@ -17,15 +17,10 @@ export const generateHours = () => {
     return hours;
 }
 
-export const isRoomBooked = (rooms, roomId, date, hour) => {
+export const isRoomBooked = (room, date, hour) => {
     const startTime = new Date(`${date}T${hour}:00.000Z`);
     const endTime = new Date(startTime);
     endTime.setHours(endTime.getHours() + 1);
-
-    const room = rooms.find(room => room.id === roomId);
-    if (!room) {
-        return false;
-    }
 
     return room.bookings.some(booking => {
         const bookingStart = new Date(booking.startTime);
