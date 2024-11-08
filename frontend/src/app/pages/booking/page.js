@@ -12,11 +12,12 @@ export default function Booking() {
   const { selectedRoom } = useContext(BookingContext);
   const router = useRouter();
   const [showWarning, setShowWarning] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false); // State för om vi scrollat ner
   const isNextButtonDisabled = !selectedRoom.roomId || !selectedRoom.hour || !selectedRoom.date;
 
   useEffect(() => {
     if (showWarning) {
-        setShowWarning(false);
+      setShowWarning(false);
     }
   }, [selectedRoom]);
 
@@ -28,11 +29,21 @@ export default function Booking() {
     }
   };
 
+  const handleScroll = (event) => {
+    const scrollTop = event.target.scrollTop;
+    setIsScrolled(scrollTop > 0); // Uppdatera baserat på om man skrollat ner
+  };
+
   return (
     <div className="max-h-screen p-6 mb-[53px]">
       <Title text="Välj en tid" />
       <DropdownContainer />
-      <div className="mt-[40px]" style={{ maxHeight: '55vh', overflowY: 'auto' }}>
+      <div
+        className={`mt-[40px] max-h-[52vh] overflow-y-scroll ${
+          isScrolled ? 'scrollbar-visible' : 'scrollbar-hidden'
+        }`}
+        onScroll={handleScroll}
+      >
         <BookingCalendar />
       </div>
       <div className="mt-[27px]">
