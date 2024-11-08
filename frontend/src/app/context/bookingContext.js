@@ -20,7 +20,6 @@ export const BookingProvider = ({ children }) => {
 
     const bookingsData = await fetchBookings();
     setBookings(bookingsData);
-    console.log('Bookings: ', bookingsData);
   };
 
   useEffect(() => {
