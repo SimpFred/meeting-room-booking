@@ -12,8 +12,8 @@ export const BookingProvider = ({ children }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dates, setDates] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState({ roomId: null, hour: null, date: null });
-  const dropdownRef = useRef(null);
 
+  // Function to refresh rooms and bookings data
   const refreshData = async () => {
     const roomsData = await fetchRooms();
     setRooms(roomsData);
@@ -22,11 +22,12 @@ export const BookingProvider = ({ children }) => {
     setBookings(bookingsData);
   };
 
+  // Fetch data when the component mounts
   useEffect(() => {
     refreshData();
   }, []);
 
-
+  // Handle room selection in the dropdown
   const handleRoomSelection = (roomName) => {
     setCheckedRooms((prevSelected) =>
       prevSelected.includes(roomName)
@@ -35,13 +36,16 @@ export const BookingProvider = ({ children }) => {
     );
   };
 
+  // Toggle the dropdown open/close status
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
 
+  // Confirm the selection of rooms
   const handleConfirmSelection = () => {
     setIsDropdownOpen(false);
     setUserSelectedRooms(checkedRooms);
   };
 
+  // Clear the selection of rooms
   const handleClearSelection = () => {
     setUserSelectedRooms([]);
     setCheckedRooms([]);
@@ -55,7 +59,6 @@ export const BookingProvider = ({ children }) => {
         checkedRooms,
         userSelectedRooms,
         isDropdownOpen,
-        dropdownRef,
         selectedRoom,
         dates,
         setDates,

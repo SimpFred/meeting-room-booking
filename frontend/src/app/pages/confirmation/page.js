@@ -14,30 +14,35 @@ export default function Confirmation() {
     const [name, setName] = useState("");
     const router = useRouter();
 
+    // Redirect to booking page if selectedRoom is not properly set
     useEffect(() => {
         if (!selectedRoom.roomId || !selectedRoom.hour || !selectedRoom.date) {
             router.push('/pages/booking');
         }
     }, []);
 
+    // Hide warning when name changes
     useEffect(() => {
         if (showWarning) {
             setShowWarning(false);
         }
     }, [name]);
 
-
+    // Handle booking process
     const handleBooking = async () => {
+        // Show warning if name is empty
         if (!name) {
             setShowWarning(true);
             return;
         }
 
+        // Create start and end times for the booking
         const startTime = new Date(`${selectedRoom.date}T${selectedRoom.hour}:00`);
         startTime.setHours(startTime.getHours() + 1);
         const endTime = new Date(startTime);
         endTime.setHours(startTime.getHours() + 1);
 
+        // Create booking object
         try {
             const booking = {
                 roomId: selectedRoom.roomId,
@@ -46,20 +51,21 @@ export default function Confirmation() {
                 bookedBy: name,
             };
 
+            // Create booking via API
             await createBooking(booking);
-            setShowPopup(true); // Visa popupen
+            setShowPopup(true); // Show popup
+            // Refresh data and redirect to booking page after 3 seconds
             setTimeout(() => {
                 refreshData();
                 setSelectedRoom({ roomId: null, hour: null, date: null });
-                setShowPopup(false)
+                setShowPopup(false);
                 router.push('/pages/booking');
             }, 3000);
         } catch (error) {
             console.error("Error:", error);
-            alert("Något gick fel. Försök igen.");
+            alert("Something went wrong. Please try again.");
         }
     };
-
 
     return (
         <div className="min-h-screen flex flex-col p-6 pb-[53px]">
@@ -80,10 +86,10 @@ export default function Confirmation() {
             <div className="mt-auto">
                 <Button text="Boka" onClick={handleBooking} />
                 <div className="h-6">
-                        {showWarning && (
-                            <p className="text-red-500 text-center">Vänligen fyll i ditt namn för att gå vidare</p>
-                        )}
-                    </div>
+                    {showWarning && (
+                        <p className="text-red-500 text-center">Vänligen fyll i ditt namn för att gå vidare</p>
+                    )}
+                </div>
             </div>
             {showPopup && <Popup message="Ditt rum är bokat!" />}
 
