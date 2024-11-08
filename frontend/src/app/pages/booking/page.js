@@ -12,15 +12,17 @@ export default function Booking() {
   const { selectedRoom } = useContext(BookingContext);
   const router = useRouter();
   const [showWarning, setShowWarning] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); // State för om vi scrollat ner
+  const [isScrolled, setIsScrolled] = useState(false); // State to track if the user has scrolled down
   const isNextButtonDisabled = !selectedRoom.roomId || !selectedRoom.hour || !selectedRoom.date;
 
+  // Reset warning when selectedRoom changes
   useEffect(() => {
     if (showWarning) {
       setShowWarning(false);
     }
   }, [selectedRoom]);
 
+  // Handle click on the "Next" button
   const handleNextClick = () => {
     if (!isNextButtonDisabled) {
       router.push('/pages/confirmation');
@@ -29,9 +31,10 @@ export default function Booking() {
     }
   };
 
+  // Handle scroll event to update isScrolled state
   const handleScroll = (event) => {
     const scrollTop = event.target.scrollTop;
-    setIsScrolled(scrollTop > 0); // Uppdatera baserat på om man skrollat ner
+    setIsScrolled(scrollTop > 0); // Update based on whether the user has scrolled down
   };
 
   return (
