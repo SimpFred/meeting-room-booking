@@ -4,7 +4,11 @@ const prisma = new PrismaClient();
 
 export const getAll = async (req, res) => {
     try {
-        const rooms = await prisma.room.findMany();
+        const rooms = await prisma.room.findMany({
+            include: {
+                bookings: true,
+            },
+        });
         res.json(rooms);
     } catch (error) {
         res.status(500).json({ error: "Error fetching rooms" });
