@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../../components/button";
 import Title from "../../components/title";
 import BookingContext from "../../context/bookingContext";
@@ -10,12 +10,26 @@ import Popup from "../../components/popup";
 export default function Confirmation() {
     const { selectedRoom, setSelectedRoom, refreshData } = useContext(BookingContext);
     const [showPopup, setShowPopup] = useState(false);
+    const [showWarning, setShowWarning] = useState(false);
     const [name, setName] = useState("");
     const router = useRouter();
 
+    useEffect(() => {
+        if (!selectedRoom.roomId || !selectedRoom.hour || !selectedRoom.date) {
+            router.push('/pages/booking');
+        }
+    }, []);
+
+    useEffect(() => {
+        if (showWarning) {
+            setShowWarning(false);
+        }
+    }, [name]);
+
+
     const handleBooking = async () => {
         if (!name) {
-            alert("Vänligen ange ditt namn.");
+            setShowWarning(true);
             return;
         }
 
@@ -39,7 +53,7 @@ export default function Confirmation() {
                 setSelectedRoom({ roomId: null, hour: null, date: null });
                 setShowPopup(false)
                 router.push('/pages/booking');
-            }, 3000); 
+            }, 3000);
         } catch (error) {
             console.error("Error:", error);
             alert("Något gick fel. Försök igen.");
@@ -65,6 +79,11 @@ export default function Confirmation() {
             </div>
             <div className="mt-auto">
                 <Button text="Boka" onClick={handleBooking} />
+                <div className="h-6">
+                        {showWarning && (
+                            <p className="text-red-500 text-center">Vänligen fyll i ditt namn för att gå vidare</p>
+                        )}
+                    </div>
             </div>
             {showPopup && <Popup message="Ditt rum är bokat!" />}
 
