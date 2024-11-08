@@ -5,9 +5,11 @@ import Title from "../../components/title";
 import BookingContext from "../../context/bookingContext";
 import { createBooking } from "../../service/apiClient";
 import { useRouter } from 'next/navigation';
+import Popup from "../../components/popup";
 
 export default function Confirmation() {
-    const { selectedRoom, refreshData } = useContext(BookingContext);
+    const { selectedRoom, setSelectedRoom, refreshData } = useContext(BookingContext);
+    const [showPopup, setShowPopup] = useState(false);
     const [name, setName] = useState("");
     const router = useRouter();
 
@@ -31,9 +33,13 @@ export default function Confirmation() {
             };
 
             await createBooking(booking);
-            alert("Bokningen har skickats!");
-            refreshData();
-            router.push('/pages/booking');
+            setShowPopup(true); // Visa popupen
+            setTimeout(() => {
+                refreshData();
+                setSelectedRoom({ roomId: null, hour: null, date: null });
+                setShowPopup(false)
+                router.push('/pages/booking');
+            }, 3000); 
         } catch (error) {
             console.error("Error:", error);
             alert("Något gick fel. Försök igen.");
@@ -60,6 +66,8 @@ export default function Confirmation() {
             <div className="mt-auto">
                 <Button text="Boka" onClick={handleBooking} />
             </div>
+            {showPopup && <Popup message="Ditt rum är bokat!" />}
+
         </div>
     );
 }
