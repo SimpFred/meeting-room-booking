@@ -5,7 +5,7 @@ import { generateDates } from "../../utils/helperMethods";
 
 const Navigation = () => {
     const { dates, setDates } = useContext(BookingContext);
-    const [currentDate, setCurrentDate] = useState(new Date());
+    const [currentDate] = useState(new Date());
 
     useEffect(() => {
         setDates(generateDates(3));
@@ -15,16 +15,18 @@ const Navigation = () => {
         return new Date(date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' });
     };
 
-    const handleNext = () => {
-        const newStartDate = new Date(dates[dates.length - 1]);
-        newStartDate.setDate(newStartDate.getDate() + 1);
+    const paginateDates = (direction) => {
+        const newStartDate = new Date(direction === 'next' ? dates[dates.length - 1] : dates[0]);
+        newStartDate.setDate(newStartDate.getDate() + (direction === 'next' ? 1 : -3));
         setDates(generateDates(3, newStartDate));
     };
 
+    const handleNext = () => {
+        paginateDates('next');
+    };
+
     const handlePrev = () => {
-        const newStartDate = new Date(dates[0]);
-        newStartDate.setDate(newStartDate.getDate() - 3);
-        setDates(generateDates(3, newStartDate));
+        paginateDates('prev');
     };
 
     const isPrevDisabled = () => {
