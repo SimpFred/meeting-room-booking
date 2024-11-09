@@ -1,30 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 
+// Initialize Prisma Client to interact with the database.
 const prisma = new PrismaClient();
 
-export const getAll = async (req, res) => {
-    try {
-        const bookings = await prisma.booking.findMany();
-        res.json(bookings);
-    } catch (error) {
-        res.status(500).json({ error: "Error fetching rooms" });
-    }
-};
-
-export const getById = async (req, res) => {
-    const { id } = req.params;
-    try {
-        const booking = await prisma.booking.findUnique({
-            where: {
-                id: parseInt(id),
-            },
-        });
-        res.json(booking);
-    } catch (error) {
-        res.status(500).json({ error: "Error fetching room" });
-    }
-};
-
+// Create a new booking in the database
 export const create = async (req, res) => {
     const { roomId, startTime, endTime, bookedBy } = req.body;
     try {

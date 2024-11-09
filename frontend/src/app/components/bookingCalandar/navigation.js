@@ -42,7 +42,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between mb-4">
             <ArrowLeftCircleIcon
                 className={`h-8 w-8 text-black-500 cursor-pointer ${isPrevDisabled() ? 'opacity-50 cursor-not-allowed' : ''}`}
-                onClick={!isPrevDisabled() ? handlePrev : null} 
+                onClick={!isPrevDisabled() ? handlePrev : null}
             />
             <h2 className="text-lg font-[400] tracking-tighter">
                 {formatDate(dates[0])} - {formatDate(dates[dates.length - 1])}

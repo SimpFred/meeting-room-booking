@@ -42,9 +42,8 @@ export default function Booking() {
       <Title text="Välj en tid" />
       <DropdownContainer />
       <div
-        className={`mt-[40px] max-h-[52vh] overflow-y-scroll ${
-          isScrolled ? 'scrollbar-visible' : 'scrollbar-hidden'
-        }`}
+        className={`mt-[40px] max-h-[52vh] overflow-y-scroll ${isScrolled ? 'scrollbar-visible' : 'scrollbar-hidden'
+          }`}
         onScroll={handleScroll}
       >
         <BookingCalendar />

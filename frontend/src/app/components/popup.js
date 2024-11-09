@@ -1,4 +1,4 @@
-import {FaceSmileIcon} from "@heroicons/react/24/outline";
+import { FaceSmileIcon } from "@heroicons/react/24/outline";
 
 // Popup component to display a message with an icon
 const Popup = ({ message }) => {

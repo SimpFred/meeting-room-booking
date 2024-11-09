@@ -4,7 +4,7 @@ import { useContext } from "react";
 import BookingContext from "../../context/bookingContext";
 
 const BookingCalendar = () => {
-    const {dates} = useContext(BookingContext);
+    const { dates } = useContext(BookingContext);
 
     return (
         <div className="mb-[27px]">

@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function seedDatabase() {
-    // Create rooms
+    // Initialize the database with the rooms data if it's empty
     const rooms = [
         { name: 'Margret', capacity: 4 },
         { name: 'Steve', capacity: 6 },
@@ -17,23 +17,6 @@ async function seedDatabase() {
             data: room,
         });
     }
-
-    console.log('Rooms have been created');
-
-    // Fetch the first room to use for the booking
-    const firstRoom = await prisma.room.findFirst();
-
-    // Create a booking
-    const newBooking = await prisma.booking.create({
-        data: {
-            roomId: firstRoom.id,
-            startTime: new Date('2024-11-05T09:00:00Z'),
-            endTime: new Date('2024-11-05T10:00:00Z'),
-            bookedBy: 'Simon Fred',
-        },
-    });
-
-    console.log(newBooking);
 }
 
 seedDatabase().catch((e) => {
