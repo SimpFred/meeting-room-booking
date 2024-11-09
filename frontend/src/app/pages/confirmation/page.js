@@ -6,6 +6,7 @@ import BookingContext from "../../context/bookingContext";
 import { createBooking } from "../../service/apiClient";
 import { useRouter } from 'next/navigation';
 import Popup from "../../components/popup";
+import WarningMessage from "../../components/warningMessage";
 
 export default function Confirmation() {
     const { selectedRoom, setSelectedRoom, refreshData } = useContext(BookingContext);
@@ -86,9 +87,7 @@ export default function Confirmation() {
             <div className="mt-auto">
                 <Button text="Boka" onClick={handleBooking} />
                 <div className="h-6">
-                    {showWarning && (
-                        <p className="text-red-500 text-center">Vänligen fyll i ditt namn för att gå vidare</p>
-                    )}
+                    {showWarning && <WarningMessage text="Vänligen fyll i ditt namn för att gå vidare" />}
                 </div>
             </div>
             {showPopup && <Popup message="Ditt rum är bokat!" />}

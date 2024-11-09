@@ -7,6 +7,7 @@ import BookingCalendar from '../../components/bookingCalandar/bookingCalandar';
 import Button from '../../components/button';
 import BookingContext from '../../context/bookingContext';
 import Title from '../../components/title';
+import WarningMessage from '../../components/warningMessage';
 
 export default function Booking() {
   const { selectedRoom } = useContext(BookingContext);
@@ -50,9 +51,7 @@ export default function Booking() {
       </div>
       <div className="mt-[27px]">
         <Button text="nästa" onClick={handleNextClick} disabled={isNextButtonDisabled} />
-        {showWarning && (
-          <p className="text-red-500 text-center mt-2">Ett rum måste vara markerat för att gå vidare</p>
-        )}
+        {showWarning && <WarningMessage text={"Ett rum måste vara markerat för att gå vidare"} />}
       </div>
     </div>
   );
