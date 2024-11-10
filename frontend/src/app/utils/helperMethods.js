@@ -38,3 +38,8 @@ export const isRoomBooked = (room, date, hour) => {
         );
     });
 };
+
+// Format date to 'day month' format in Swedish without trailing period
+export const formatDate = (date) => {
+    return new Date(date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' }).replace('.', '');
+};

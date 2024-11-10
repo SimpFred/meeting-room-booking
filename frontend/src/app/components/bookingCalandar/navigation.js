@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 import BookingContext from "../../context/bookingContext";
-import { generateDates } from "../../utils/helperMethods";
+import { formatDate, generateDates } from "../../utils/helperMethods";
 
 const Navigation = () => {
     const { dates, setDates } = useContext(BookingContext);
@@ -11,11 +11,6 @@ const Navigation = () => {
     useEffect(() => {
         setDates(generateDates(3));
     }, []);
-
-    // Format date to 'day month' format in Swedish
-    const formatDate = (date) => {
-        return new Date(date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' });
-    };
 
     // Paginate dates based on direction (next or prev)
     const paginateDates = (direction) => {
