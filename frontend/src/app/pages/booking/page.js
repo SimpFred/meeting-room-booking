@@ -43,6 +43,7 @@ export default function Booking() {
       <Title text="Välj en tid" />
       <DropdownContainer />
       <div
+        // Initially hide the scrollbar to prevent it from obstructing the right pagination icon in the calendar
         className={`mt-[40px] max-h-[52vh] overflow-y-scroll ${isScrolled ? 'scrollbar-visible' : 'scrollbar-hidden'
           }`}
         onScroll={handleScroll}
