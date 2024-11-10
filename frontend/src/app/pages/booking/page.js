@@ -50,7 +50,7 @@ export default function Booking() {
         <BookingCalendar />
       </div>
       <div className="mt-[27px]">
-        <Button text="nästa" onClick={handleNextClick} disabled={isNextButtonDisabled} />
+        <Button text="Nästa" onClick={handleNextClick} disabled={isNextButtonDisabled} />
         {showWarning && <WarningMessage text={"Ett rum måste vara markerat för att gå vidare"} />}
       </div>
     </div>
