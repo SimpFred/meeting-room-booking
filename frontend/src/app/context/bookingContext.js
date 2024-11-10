@@ -12,15 +12,15 @@ export const BookingProvider = ({ children }) => {
   const [dates, setDates] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState({ roomId: null, hour: null, date: null });
 
-  // Function to refresh rooms and bookings data
-  const refreshData = async () => {
+  // Function to refresh rooms data
+  const getRooms = async () => {
     const roomsData = await fetchRooms();
     setRooms(roomsData);
   };
 
   // Fetch data when the component mounts
   useEffect(() => {
-    refreshData();
+    getRooms();
   }, []);
 
   // Handle room selection in the dropdown
@@ -62,7 +62,7 @@ export const BookingProvider = ({ children }) => {
         toggleDropdown,
         handleConfirmSelection,
         handleClearSelection,
-        refreshData,
+        refreshData: getRooms,
       }}
     >
       {children}
