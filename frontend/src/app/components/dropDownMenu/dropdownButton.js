@@ -10,13 +10,13 @@ const DropdownButton = () => {
     // Button element with onClick handler to toggle dropdown
     <button
       onClick={toggleDropdown}
-      className="min-w-[180px] rounded-[8px] border border-solid p-[16px] text-left bg-white flex justify-between items-center"
+      className="min-w-[180px] rounded-[8px] border border-solid p-[16px] border-[#BDBDBD] text-left bg-[var(--background)] flex justify-between items-center"
     >
       <span>
         {/* Display the number of selected rooms or a default message */}
         {userSelectedRooms.length > 0
-          ? `${userSelectedRooms.length} rum valda`
-          : 'Välj mötesrum'}
+          ? `${userSelectedRooms.length} valda rum`
+          : 'Mötesrum'}
       </span>
       {/* Display the appropriate icon based on dropdown state */}
       {isDropdownOpen ? (
