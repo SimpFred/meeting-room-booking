@@ -84,7 +84,7 @@ export default function Confirmation() {
                     onChange={(e) => setName(e.target.value)}
                 />
             </div>
-            <div className="mt-auto">
+            <div className="mt-auto flex justify-center">
                 <Button text="Boka" onClick={handleBooking} />
                 <div className="h-6">
                     {showWarning && <WarningMessage text="Vänligen fyll i ditt namn för att gå vidare" />}
