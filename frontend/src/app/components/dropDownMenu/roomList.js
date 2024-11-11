@@ -17,7 +17,7 @@ const RoomList = () => {
                             type="checkbox"
                             checked={checkedRooms.includes(room.id)}
                             onChange={() => handleRoomSelection(room.id)}
-                            className="ml-2 bg-transparent checked:text-[#004D40] transform scale-150"
+                            className="ml-2 h-6 w-6 border border-gray-400 rounded appearance-none checked:bg-transparent transform scale-150 custom-checkbox"
                         />
                     </label>
                 </div>
