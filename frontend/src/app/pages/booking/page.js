@@ -1,20 +1,21 @@
 "use client";
 
-import { useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import DropdownContainer from '../../components/dropDownMenu/dropDownContainer';
-import BookingCalendar from '../../components/bookingCalandar/bookingCalandar';
-import Button from '../../components/button';
-import BookingContext from '../../context/bookingContext';
-import Title from '../../components/title';
-import WarningMessage from '../../components/warningMessage';
+import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import DropdownContainer from "../../components/dropDownMenu/dropDownContainer";
+import BookingCalendar from "../../components/bookingCalandar/bookingCalandar";
+import Button from "../../components/button";
+import BookingContext from "../../context/bookingContext";
+import Title from "../../components/title";
+import WarningMessage from "../../components/warningMessage";
 
 export default function Booking() {
   const { selectedRoom } = useContext(BookingContext);
   const router = useRouter();
   const [showWarning, setShowWarning] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false); // State to track if the user has scrolled down
-  const isNextButtonDisabled = !selectedRoom.roomId || !selectedRoom.hour || !selectedRoom.date;
+  const isNextButtonDisabled =
+    !selectedRoom.roomId || !selectedRoom.hour || !selectedRoom.date;
 
   // Reset warning when selectedRoom changes
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function Booking() {
   // Handle click on the "Next" button
   const handleNextClick = () => {
     if (!isNextButtonDisabled) {
-      router.push('/pages/confirmation');
+      router.push("/pages/confirmation");
     } else {
       setShowWarning(true);
     }
@@ -44,15 +45,24 @@ export default function Booking() {
       <DropdownContainer />
       <div
         // Initially hide the scrollbar to prevent it from obstructing the right pagination icon in the calendar
-        className={`mt-[40px] max-h-[52vh] overflow-y-scroll ${isScrolled ? 'scrollbar-visible' : 'scrollbar-hidden'
-          }`}
+        className={`mt-[40px] max-h-[52vh] overflow-y-scroll ${
+          isScrolled ? "scrollbar-visible" : "scrollbar-hidden"
+        }`}
         onScroll={handleScroll}
       >
         <BookingCalendar />
       </div>
-      <div className="mt-[27px] flex justify-center">
-        <Button text="Nästa" onClick={handleNextClick} disabled={isNextButtonDisabled} />
-        {showWarning && <WarningMessage text={"Ett rum måste vara markerat för att gå vidare"} />}
+      <div className="mt-[27px] flex flex-col justify-center">
+        <Button
+          text="Nästa"
+          onClick={handleNextClick}
+          disabled={isNextButtonDisabled}
+        />
+        {showWarning && (
+          <WarningMessage
+            text={"Ett rum måste vara markerat för att gå vidare"}
+          />
+        )}
       </div>
     </div>
   );
