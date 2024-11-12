@@ -40,7 +40,8 @@ export default function Booking() {
   };
 
   return (
-    <div className="max-h-screen p-6 mb-[53px] flex flex-col">
+    <div className="max-h-screen sm:max-h-[180vh] p-6 mb-[53px] flex flex-col">
+      {" "}
       <Title text="Välj en tid" />
       <DropdownContainer />
       <div
@@ -52,12 +53,14 @@ export default function Booking() {
       >
         <BookingCalendar />
       </div>
-      <div className="mt-[27px] flex flex-col justify-center">
-        <Button
-          text="Nästa"
-          onClick={handleNextClick}
-          disabled={isNextButtonDisabled}
-        />
+      <div className="mt-[27px] flex-col">
+        <div className="flex justify-center">
+          <Button
+            text="Nästa"
+            onClick={handleNextClick}
+            disabled={isNextButtonDisabled}
+          />
+        </div>
         {showWarning && (
           <WarningMessage
             text={"Ett rum måste vara markerat för att gå vidare"}
