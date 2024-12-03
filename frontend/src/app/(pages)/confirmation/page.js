@@ -18,7 +18,12 @@ export default function Confirmation() {
 
   // Redirect to booking page if selectedRoom is not properly set
   useEffect(() => {
-    if (!selectedRoom.roomId || !selectedRoom.hour || !selectedRoom.date) {
+    if (
+      !selectedRoom.roomId ||
+      !selectedRoom.startTime ||
+      !selectedRoom.endTime ||
+      !selectedRoom.date
+    ) {
       router.push("/booking");
     }
   }, []);
@@ -39,10 +44,12 @@ export default function Confirmation() {
     }
 
     // Create start and end times for the booking
-    const startTime = new Date(`${selectedRoom.date}T${selectedRoom.hour}:00`);
+    const startTime = new Date(
+      `${selectedRoom.date}T${selectedRoom.startTime}:00`
+    );
     startTime.setHours(startTime.getHours() + 1);
-    const endTime = new Date(startTime);
-    endTime.setHours(startTime.getHours() + 1);
+    const endTime = new Date(`${selectedRoom.date}T${selectedRoom.endTime}:00`);
+    endTime.setHours(endTime.getHours() + 1);
 
     // Create booking object
     try {
@@ -59,7 +66,12 @@ export default function Confirmation() {
       // Refresh data and redirect to booking page after 3 seconds
       setTimeout(() => {
         refreshData();
-        setSelectedRoom({ roomId: null, hour: null, date: null });
+        setSelectedRoom({
+          roomId: null,
+          startTime: null,
+          endTime: null,
+          date: null,
+        });
         setShowPopup(false);
         router.push("/booking");
       }, 3000);
