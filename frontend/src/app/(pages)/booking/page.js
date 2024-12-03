@@ -40,32 +40,32 @@ export default function Booking() {
   };
 
   return (
-    <div className="max-h-screen sm:max-h-[180vh] p-6 mb-[53px] flex flex-col">
+    <div className="min-h-screen sm:max-h-[180vh] p-6 flex flex-col">
       {" "}
       <Title text="Välj en tid" />
       <DropdownContainer />
       <div
         // Initially hide the scrollbar to prevent it from obstructing the right pagination icon in the calendar
-        className={`mt-[40px] max-h-[52vh] overflow-y-scroll ${
+        className={`mt-[40px] max-h-[54vh] overflow-y-scroll ${
           isScrolled ? "scrollbar-visible" : "scrollbar-hidden"
         }`}
         onScroll={handleScroll}
       >
         <BookingCalendar />
       </div>
-      <div className="mt-[27px] flex-col">
-        <div className="flex justify-center">
+      <div className="mt-[27px] ">
+        <div className="flex flex-col items-center justify-center mb-[56px]">
           <Button
             text="Nästa"
             onClick={handleNextClick}
             disabled={isNextButtonDisabled}
           />
+          {showWarning && (
+            <WarningMessage
+              text={"Ett rum måste vara markerat för att gå vidare"}
+            />
+          )}
         </div>
-        {showWarning && (
-          <WarningMessage
-            text={"Ett rum måste vara markerat för att gå vidare"}
-          />
-        )}
       </div>
     </div>
   );

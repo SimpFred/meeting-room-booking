@@ -70,7 +70,7 @@ export default function Confirmation() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col p-6 pb-[53px]">
+    <div className="min-h-screen flex flex-col p-6 pb-0">
       <Title text="Vem bokar?" />
 
       <div className="mt-[40px]">
@@ -88,15 +88,16 @@ export default function Confirmation() {
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      <div className="mt-auto flex-col">
+
+      <div className="mt-auto">
         <div className="flex justify-center">
           <Button text="Boka" onClick={handleBooking} />
         </div>
-        <div className="h-6">
-          {showWarning && (
-            <WarningMessage text="Vänligen fyll i ditt namn för att gå vidare" />
-          )}
-        </div>
+      </div>
+      <div className="h-1 mb-[53px]">
+        {showWarning && (
+          <WarningMessage text="Vänligen fyll i ditt namn för att gå vidare" />
+        )}
       </div>
       {showPopup && <Popup message="Ditt rum är bokat!" />}
     </div>
