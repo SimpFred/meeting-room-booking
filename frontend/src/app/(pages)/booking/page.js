@@ -24,7 +24,6 @@ export default function Booking() {
     }
   }, [selectedRoom]);
 
-  // Handle click on the "Next" button
   const handleNextClick = () => {
     if (!isNextButtonDisabled) {
       router.push("/confirmation");
@@ -41,7 +40,6 @@ export default function Booking() {
 
   return (
     <div className="min-h-screen sm:max-h-[180vh] p-6 flex flex-col">
-      {" "}
       <Title text="Välj en tid" />
       <DropdownContainer />
       <div
