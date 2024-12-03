@@ -1,7 +1,7 @@
 // BookingContext.js
 import React, { createContext, useState, useEffect, useRef } from "react";
 import { fetchRooms } from "../service/apiClient";
-import { generateDates } from "../utils/helperMethods";
+import { generateDates, generateTimeSlots } from "../utils/helperMethods";
 
 const BookingContext = createContext();
 
@@ -11,9 +11,14 @@ export const BookingProvider = ({ children }) => {
   const [userSelectedRooms, setUserSelectedRooms] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dates, setDates] = useState(generateDates(3));
+  const [selectedTime, setSelectedTime] = useState(60);
+  const [timeSlots, setTimeSlots] = useState(
+    generateTimeSlots(8, 17, selectedTime)
+  ); // Generate an array of time slots between 08:00-17:00 to display each room's availability
   const [selectedRoom, setSelectedRoom] = useState({
     roomId: null,
-    hour: null,
+    startTime: null,
+    endTime: null,
     date: null,
   });
 
@@ -27,6 +32,11 @@ export const BookingProvider = ({ children }) => {
   useEffect(() => {
     getRooms();
   }, []);
+
+  // Generate time slots when the selected time changes
+  useEffect(() => {
+    setTimeSlots(generateTimeSlots(8, 17, selectedTime));
+  }, [selectedTime]);
 
   // Handle room selection in the dropdown
   const handleRoomSelection = (roomName) => {
@@ -68,6 +78,9 @@ export const BookingProvider = ({ children }) => {
         handleConfirmSelection,
         handleClearSelection,
         refreshData: getRooms,
+        selectedTime,
+        setSelectedTime,
+        timeSlots,
       }}
     >
       {children}
