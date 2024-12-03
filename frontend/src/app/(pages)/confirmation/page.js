@@ -19,7 +19,7 @@ export default function Confirmation() {
   // Redirect to booking page if selectedRoom is not properly set
   useEffect(() => {
     if (!selectedRoom.roomId || !selectedRoom.hour || !selectedRoom.date) {
-      router.push("/pages/booking");
+      router.push("/booking");
     }
   }, []);
 
@@ -61,7 +61,7 @@ export default function Confirmation() {
         refreshData();
         setSelectedRoom({ roomId: null, hour: null, date: null });
         setShowPopup(false);
-        router.push("/pages/booking");
+        router.push("/booking");
       }, 3000);
     } catch (error) {
       console.error("Error:", error);

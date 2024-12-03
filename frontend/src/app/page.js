@@ -1,13 +1,13 @@
 "use client";
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import Button from './components/button';
+import React from "react";
+import { useRouter } from "next/navigation";
+import Button from "./components/button";
 
 export default function Home() {
   const router = useRouter();
 
   const handleBookClick = () => {
-    router.push('/pages/booking');
+    router.push("/booking");
   };
 
   return (

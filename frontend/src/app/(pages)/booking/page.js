@@ -27,7 +27,7 @@ export default function Booking() {
   // Handle click on the "Next" button
   const handleNextClick = () => {
     if (!isNextButtonDisabled) {
-      router.push("/pages/confirmation");
+      router.push("/confirmation");
     } else {
       setShowWarning(true);
     }

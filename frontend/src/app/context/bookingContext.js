@@ -1,6 +1,7 @@
 // BookingContext.js
-import React, { createContext, useState, useEffect, useRef } from 'react';
-import { fetchRooms } from '../service/apiClient';
+import React, { createContext, useState, useEffect, useRef } from "react";
+import { fetchRooms } from "../service/apiClient";
+import { generateDates } from "../utils/helperMethods";
 
 const BookingContext = createContext();
 
@@ -9,8 +10,12 @@ export const BookingProvider = ({ children }) => {
   const [checkedRooms, setCheckedRooms] = useState([]);
   const [userSelectedRooms, setUserSelectedRooms] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [dates, setDates] = useState([]);
-  const [selectedRoom, setSelectedRoom] = useState({ roomId: null, hour: null, date: null });
+  const [dates, setDates] = useState(generateDates(3));
+  const [selectedRoom, setSelectedRoom] = useState({
+    roomId: null,
+    hour: null,
+    date: null,
+  });
 
   // Function to refresh rooms data
   const getRooms = async () => {
