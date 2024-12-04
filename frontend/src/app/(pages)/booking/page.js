@@ -56,40 +56,28 @@ export default function Booking() {
     <div className="min-h-screen sm:max-h-[180vh] p-6 flex flex-col">
       <Title text="Välj en tid" />
       <DropdownContainer />
+
       <div className="mt-4">
         <label className="block text-sm font-medium text-gray-700">
           Välj bokningslängd (i minuter)
         </label>
-        <div className="mt-2 flex items-center space-x-2">
-          {/* Minus-knapp */}
-          <button
-            type="button"
-            className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300"
-            onClick={() => setSelectedTime((prev) => Math.max(10, prev - 5))} // Minskar med 15, men inte lägre än 15
-          >
-            –
-          </button>
-          {/* Visar valt värde */}
-          <input
-            type="number"
-            readOnly
-            className="form-input text-center w-20 border rounded-md p-2"
-            value={selectedTime}
-          />
-          {/* Plus-knapp */}
-          <button
-            type="button"
-            className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300"
-            onClick={() => setSelectedTime((prev) => Math.min(120, prev + 5))} // Ökar med 15, men inte högre än 120
-          >
-            +
-          </button>
+        <input
+          type="range"
+          min="5"
+          max="120"
+          step="5"
+          value={selectedTime}
+          onChange={(e) => setSelectedTime(Number(e.target.value))}
+          className="w-full sm:w-[30%] mt-2"
+        />
+        <div className="mt-2 sm:w-[30%] text-center">
+          {selectedTime} minuter
         </div>
       </div>
 
       <div
         // Initially hide the scrollbar to prevent it from obstructing the right pagination icon in the calendar
-        className={`mt-[40px] max-h-[40vh]  overflow-y-scroll ${
+        className={`mt-[40px] max-h-[45vh]  overflow-y-scroll ${
           isScrolled ? "scrollbar-visible" : "scrollbar-hidden"
         }`}
         onScroll={handleScroll}
