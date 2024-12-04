@@ -58,55 +58,35 @@ export default function Booking() {
       <DropdownContainer />
       <div className="mt-4">
         <label className="block text-sm font-medium text-gray-700">
-          Välj bokningslängd
+          Välj bokningslängd (i minuter)
         </label>
-        <div className="mt-2 flex flex-col">
-          <label className="inline-flex items-center">
-            <input
-              type="radio"
-              className="form-radio"
-              name="bookingTime"
-              value="60"
-              checked={selectedTime === 60}
-              onChange={(e) => setSelectedTime(Number(e.target.value))}
-            />
-            <span className="ml-2">60 minuter</span>
-          </label>
-          <label className="inline-flex items-center">
-            <input
-              type="radio"
-              className="form-radio"
-              name="bookingTime"
-              value="45"
-              checked={selectedTime === 45}
-              onChange={(e) => setSelectedTime(Number(e.target.value))}
-            />
-            <span className="ml-2">45 minuter</span>
-          </label>
-          <label className="inline-flex items-center">
-            <input
-              type="radio"
-              className="form-radio"
-              name="bookingTime"
-              value="30"
-              checked={selectedTime === 30}
-              onChange={(e) => setSelectedTime(Number(e.target.value))}
-            />
-            <span className="ml-2">30 minuter</span>
-          </label>
-          <label className="inline-flex items-center">
-            <input
-              type="radio"
-              className="form-radio"
-              name="bookingTime"
-              value="15"
-              checked={selectedTime === 15}
-              onChange={(e) => setSelectedTime(Number(e.target.value))}
-            />
-            <span className="ml-2">15 minuter</span>
-          </label>
+        <div className="mt-2 flex items-center space-x-2">
+          {/* Minus-knapp */}
+          <button
+            type="button"
+            className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300"
+            onClick={() => setSelectedTime((prev) => Math.max(10, prev - 5))} // Minskar med 15, men inte lägre än 15
+          >
+            –
+          </button>
+          {/* Visar valt värde */}
+          <input
+            type="number"
+            readOnly
+            className="form-input text-center w-20 border rounded-md p-2"
+            value={selectedTime}
+          />
+          {/* Plus-knapp */}
+          <button
+            type="button"
+            className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300"
+            onClick={() => setSelectedTime((prev) => Math.min(120, prev + 5))} // Ökar med 15, men inte högre än 120
+          >
+            +
+          </button>
         </div>
       </div>
+
       <div
         // Initially hide the scrollbar to prevent it from obstructing the right pagination icon in the calendar
         className={`mt-[40px] max-h-[40vh]  overflow-y-scroll ${
