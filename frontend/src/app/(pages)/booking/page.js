@@ -57,7 +57,7 @@ export default function Booking() {
       <Title text="Välj en tid" />
       <DropdownContainer />
 
-      <div className="mt-4">
+      <div className="mt-8">
         <label className="block text-sm font-medium text-gray-700">
           Välj bokningslängd (i minuter)
         </label>
@@ -68,16 +68,16 @@ export default function Booking() {
           step="5"
           value={selectedTime}
           onChange={(e) => setSelectedTime(Number(e.target.value))}
-          className="w-full sm:w-[30%] mt-2"
+          className="w-full sm:w-[20%] mt-2"
         />
-        <div className="mt-2 sm:w-[30%] text-center">
+        <div className="mt-2 sm:w-[20%] text-center">
           {selectedTime} minuter
         </div>
       </div>
 
       <div
         // Initially hide the scrollbar to prevent it from obstructing the right pagination icon in the calendar
-        className={`mt-[40px] max-h-[45vh]  overflow-y-scroll ${
+        className={`mt-8 max-h-[41vh]  overflow-y-scroll ${
           isScrolled ? "scrollbar-visible" : "scrollbar-hidden"
         }`}
         onScroll={handleScroll}
@@ -85,7 +85,7 @@ export default function Booking() {
         <BookingCalendar />
       </div>
       <div className="mt-[27px] ">
-        <div className="flex flex-col items-center justify-center mb-[56px]">
+        <div className="flex flex-col items-center justify-center mb-[53px]">
           <Button
             text="Nästa"
             onClick={handleNextClick}
