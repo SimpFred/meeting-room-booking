@@ -70,7 +70,7 @@ export default function Confirmation() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col p-6 pb-0">
+    <div className="min-h-screen flex flex-col p-6 pb-[53px]">
       <Title text="Vem bokar?" />
 
       <div className="mt-[40px]">
@@ -94,7 +94,7 @@ export default function Confirmation() {
           <Button text="Boka" onClick={handleBooking} />
         </div>
       </div>
-      <div className="h-1 mb-[53px]">
+      <div className="h-1 ">
         {showWarning && (
           <WarningMessage text="Vänligen fyll i ditt namn för att gå vidare" />
         )}
