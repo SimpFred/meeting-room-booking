@@ -2,14 +2,11 @@
 import { BookingProvider } from "./context/bookingContext";
 import "./globals.css";
 
-
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="sv">
       <body className="antialiased">
-        <BookingProvider>
-          {children}
-        </BookingProvider>
+        <BookingProvider>{children}</BookingProvider>
       </body>
     </html>
   );
