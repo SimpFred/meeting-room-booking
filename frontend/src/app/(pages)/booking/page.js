@@ -10,7 +10,7 @@ import Title from "../../components/title";
 import WarningMessage from "../../components/warningMessage";
 
 export default function Booking() {
-  const { selectedRoom, selectedTime, setSelectedTime } =
+  const { selectedRoom, setSelectedRoom, selectedTime, setSelectedTime } =
     useContext(BookingContext);
   const router = useRouter();
   const [showWarning, setShowWarning] = useState(false);
@@ -27,6 +27,16 @@ export default function Booking() {
       setShowWarning(false);
     }
   }, [selectedRoom]);
+
+  // Reset selectedRoom when selectedTime changes
+  useEffect(() => {
+    setSelectedRoom({
+      roomId: null,
+      startTime: null,
+      endTime: null,
+      date: null,
+    });
+  }, [selectedTime]);
 
   const handleNextClick = () => {
     if (!isNextButtonDisabled) {
