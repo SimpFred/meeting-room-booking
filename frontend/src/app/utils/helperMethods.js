@@ -46,7 +46,6 @@ export const isRoomBooked = (room, date, timeSlot, nextTimeSlot) => {
     const bookingStart = new Date(booking.startTime);
     const bookingEnd = new Date(booking.endTime);
 
-    // Check for overlap
     const isOverlapping = startTime < bookingEnd && endTime > bookingStart;
 
     return isOverlapping;
