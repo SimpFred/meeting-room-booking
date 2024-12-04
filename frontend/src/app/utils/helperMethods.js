@@ -13,7 +13,6 @@ export const generateDates = (numDays, startDate = new Date()) => {
 
 export const generateTimeSlots = (startHour, endHour, intervalMinutes) => {
   const timeSlots = [];
-
   let currentHour = startHour;
   let currentMinute = 0;
 
@@ -27,11 +26,12 @@ export const generateTimeSlots = (startHour, endHour, intervalMinutes) => {
 
     // Öka tiden med intervalMinutes
     currentMinute += intervalMinutes;
-    if (currentMinute >= 60) {
+    while (currentMinute >= 60) {
       currentMinute -= 60; // Wrapar runt till nästa timme
       currentHour++;
     }
   }
+  console.log(timeSlots);
 
   return timeSlots;
 };
