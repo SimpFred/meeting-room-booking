@@ -14,7 +14,7 @@ export const BookingProvider = ({ children }) => {
   const [selectedTime, setSelectedTime] = useState(60);
   const [timeSlots, setTimeSlots] = useState(
     generateTimeSlots(8, 17, selectedTime)
-  ); // Generate an array of time slots between 08:00-17:00 to display each room's availability
+  );
   const [selectedRoom, setSelectedRoom] = useState({
     roomId: null,
     startTime: null,
