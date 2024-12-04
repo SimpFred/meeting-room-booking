@@ -106,7 +106,7 @@ export default function Confirmation() {
           <Button text="Boka" onClick={handleBooking} />
         </div>
       </div>
-      <div className="h-1 mb-[53px]">
+      <div className="h-1 mb-[70px]">
         {showWarning && (
           <WarningMessage text="Vänligen fyll i ditt namn för att gå vidare" />
         )}
