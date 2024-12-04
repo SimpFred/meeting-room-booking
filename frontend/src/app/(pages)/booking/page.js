@@ -39,7 +39,7 @@ export default function Booking() {
   };
 
   return (
-    <div className="min-h-screen sm:max-h-[180vh] p-6 flex flex-col">
+    <div className="min-h-screen sm:max-h-[180vh] pb-[53px] p-6 flex flex-col">
       <Title text="Välj en tid" />
       <DropdownContainer />
       <div
@@ -51,8 +51,8 @@ export default function Booking() {
       >
         <BookingCalendar />
       </div>
-      <div className="mt-[27px] ">
-        <div className="flex flex-col items-center justify-center mb-[56px]">
+      <div className="mt-[27px]">
+        <div className="flex flex-col items-center justify-center">
           <Button
             text="Nästa"
             onClick={handleNextClick}
