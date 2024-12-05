@@ -20,6 +20,7 @@ const FilteredRoomList = ({ date, hour }) => {
       setSelectedRoom({ roomId, hour, date });
     }
   };
+
   return (
     <>
       {rooms
